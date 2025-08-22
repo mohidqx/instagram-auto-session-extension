@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Auto Session Manager</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="popup-container">
+        <!-- Header -->
+        <header class="popup-header">
+            <div class="header-content">
+                <img src="icons/icon48.png" alt="Extension Icon" class="header-icon">
+                <div class="header-text">
+                    <h1 class="header-title">Instagram Session Manager</h1>
+                    <p class="header-subtitle">Auto Session Detection</p>
+                </div>
+            </div>
+            <div class="status-indicator" id="status-indicator">
+                <div class="status-dot" id="status-dot"></div>
+                <span class="status-text" id="status-text">Checking...</span>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="popup-content">
+            <!-- Configuration Status -->
+            <section class="config-section">
+                <h2 class="section-title">Configuration Status</h2>
+                <div class="config-items">
+                    <div class="config-item">
+                        <span class="config-label">Telegram Bot:</span>
+                        <span class="config-status" id="telegram-status">Checking...</span>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Chat ID:</span>
+                        <span class="config-status" id="chat-status">Checking...</span>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Privacy Settings:</span>
+                        <span class="config-status" id="privacy-status">Checking...</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Stats -->
+            <section class="stats-section">
+                <h2 class="section-title">Session Statistics</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value" id="sessions-detected">0</div>
+                        <div class="stat-label">Sessions Detected</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="sessions-processed">0</div>
+                        <div class="stat-label">Successfully Processed</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Quick Actions -->
+            <section class="actions-section">
+                <h2 class="section-title">Quick Actions</h2>
+                <div class="action-buttons">
+                    <button class="action-btn primary" id="open-settings">
+                        <span class="btn-icon">⚙️</span>
+                        Extension Settings
+                    </button>
+                    <button class="action-btn secondary" id="test-connection">
+                        <span class="btn-icon">🔗</span>
+                        Test Connection
+                    </button>
+                    <button class="action-btn secondary" id="view-logs">
+                        <span class="btn-icon">📋</span>
+                        View Activity Logs
+                    </button>
+                </div>
+            </section>
+
+            <!-- Current Session Info -->
+            <section class="session-section" id="session-section" style="display: none;">
+                <h2 class="section-title">Current Session</h2>
+                <div class="session-info">
+                    <div class="session-item">
+                        <span class="session-label">Status:</span>
+                        <span class="session-value" id="session-status">No session detected</span>
+                    </div>
+                    <div class="session-item">
+                        <span class="session-label">Username:</span>
+                        <span class="session-value" id="session-username">-</span>
+                    </div>
+                    <div class="session-item">
+                        <span class="session-label">Detected:</span>
+                        <span class="session-value" id="session-time">-</span>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="popup-footer">
+            <div class="footer-links">
+                <button class="footer-link" id="privacy-policy">Privacy Policy</button>
+                <button class="footer-link" id="help-support">Help & Support</button>
+            </div>
+            <div class="footer-info">
+                <span class="version-info" id="version-info">v2.0.0</span>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay" style="display: none;">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Loading...</p>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>
+

